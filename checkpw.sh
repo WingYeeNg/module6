@@ -1,8 +1,8 @@
 #!/bin/bash
 
- awk 'NR>1; { if ( $2 ~ /[a-zA-Z0-9]{8,}[A-Z]+[0-9]+/ )
-             {   printf $2 " -  meet password strength requirements\n"; }
+awk 'NR>1 { if ($2 ~/[[:upper:]]+/ && /[[:digit:]]+/ && $2 ~/^[.]{8,}$/ )
+               { print $2 " - meets password strength requirements"; }
             else
-             {  printf $2 " - does NOT meets password strength requirements\n"; }
-            }' usrpwords.txt
+               { print $2 " - does NOT meet password strength requirements"; }
+        }' usrpwords.txt
 exit 0
